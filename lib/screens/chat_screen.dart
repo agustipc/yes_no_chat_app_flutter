@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yes_no_app/widgets/buddy_message_bubble.dart';
+import 'package:yes_no_app/widgets/field_box.dart';
+import 'package:yes_no_app/widgets/my_message_bubble.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
@@ -35,13 +38,16 @@ class _ChatView extends StatelessWidget {
               child: ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text('Message $index'),
-                  );
+                  return index % 2 == 0
+                      ? const MyMessageBubble()
+                      : const BuddyMessageBubble();
                 },
               ),
             ),
-            const Text('Send message')
+            const Padding(
+              padding: EdgeInsets.only(top: 12.0),
+              child: FieldBox(),
+            )
           ],
         ),
       ),
